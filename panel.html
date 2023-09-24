@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Minha Honesta Reação</title>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="panel.css">
+    <style type="text/css">
+        body {
+            font-family: sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <h1>Minha Honesta Reação</h1>
+    <p>
+        Agora sempre vai ter alguém reagindo aos seus vídeos!
+    </p>
+    <p>
+        OBS: Não funciona no modo Picture-In-Picture.
+    </p>
+    <button id="minha-honesta-reacao-submit" onclick="adicionarReact()">Trocar de reação!</button>
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded",function(){
+            var el = document.getElementById("minha-honesta-reacao-submit");
+            el.addEventListener("onclick",adicionarReact);
+        })
+    </script>
+</body>
+</html>
