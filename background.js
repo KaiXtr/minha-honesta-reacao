@@ -1,6 +1,7 @@
 var url = new URLSearchParams(window.location.search);
 var watch = url.get('v');
 
+//Se o mouse estiver em cima da reação, mover para outro lugar
 function trocarPosicao(){
     if (this.style.float == "left"){
         this.style.float = "right";
@@ -12,12 +13,15 @@ function trocarPosicao(){
         this.style.right = "0px";
     }
 }
+
 function adicionarReact(){
+    //Remover reação se já estiver na página
     var el = document.getElementById("minha-honesta-reacao-thumb")
     if (el != null) {
         el.remove();
     }
 
+    //Lista de URLs de GIFs da internet
     var r = [
         "https://media.giphy.com/media/NCv3udz97e9e243Oon/giphy.gif",
         "https://c.tenor.com/wdAvNRoakY0AAAAM/smzinho.gif",
@@ -67,10 +71,12 @@ function adicionarReact(){
     ];
     var f = ["left","right"];
 
+    //Criar elemento HTML que vai conter o GIF
     var gif = document.createElement("img");
     gif.id = "minha-honesta-reacao-thumb"
-    gif.src = r[Math.floor(Math.random() * r.length)];
 
+    //Sortear GIF e posição inicial
+    gif.src = r[Math.floor(Math.random() * r.length)];
     gif.style.float = f[Math.floor(Math.random() * f.length)];
     if (gif.style.float == "left"){
         gif.style.left = "10px";
@@ -78,6 +84,7 @@ function adicionarReact(){
         gif.style.right = "10px";
     }
 
+    //Alterar estilo CSS do elemento
     gif.style.width = "20%";
     gif.style.position = "relative";
     gif.style.verticalAlign = "top";
@@ -86,14 +93,17 @@ function adicionarReact(){
     gif.style.boxShadow = "0px 0px 5px black";
     gif.addEventListener("mouseenter",trocarPosicao);
 
+    //Inserir elemento dentro do contêiner do player do YouTube
     var el = document.getElementById("player-container-outer");
     el.insertBefore(gif,el.firstChild);
 
     //var el = document.getElementById("player-full-bleed-container");
     //gif.style.width = "10%";
 
-    el.insertBefore(gif,el.firstChild);
+    //el.insertBefore(gif,el.firstChild);
 }
+
+//A reação será ativada a cada 2 minutos e quando trocar de vídeo
 window.addEventListener("yt-navigate-finish",adicionarReact);
 setInterval(adicionarReact,120 * 1000);
 adicionarReact();
